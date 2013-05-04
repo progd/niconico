@@ -49,9 +49,9 @@ class Niconico
       end
       getflv = Hash[@agent.get_file("#{Niconico::URL[:getflv]}?v=#{@thread_id}").scan(/([^&]+)=([^&]+)/).map{|(k,v)| [k.to_sym,CGI.unescape(v)] }]
 
-      @title = @page.at("#video_title").inner_text
-      @description = @page.at("#itab_description p").inner_text
-      @description_raw = @page.at("#itab_description p").inner_html
+      @title = @page.at("span.videoHeaderTitle").inner_text
+      @description = @page.at("p.videoDescription").inner_text
+      @description_raw = @page.at("p.videoDescription").inner_html
       @video_url = getflv[:url]
       @eco = !(/low$/ =~ @video_url).nil?
       @type = case @video_url.match(/^http:\/\/(.+\.)?nicovideo\.jp\/smile\?(.+?)=.*$/).to_a[2]
