@@ -8,7 +8,6 @@ nico.agent.request_headers = {
 video = nico.video('sm9')
 
 puts "title=#{video.title}"
-open("#{video.title}.#{video.type}", 'w') { |file|
+open("#{video.title}.#{video.type}", 'w+b') { |file|
   file.print video.get_video
 }
-
